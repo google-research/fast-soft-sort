@@ -52,8 +52,9 @@ def isotonic_l2(input_s, input_w=None):
     solution to the optimization problem.
   """
   if input_w is None:
-    input_w = np.arange(len(input_s))[::-1]
-  solution = np.zeros(len(input_s)).astype(input_s.dtype)
+    input_w = np.arange(len(input_s))[::-1] + 1
+  input_w = input_w.astype(input_s.dtype)
+  solution = np.zeros_like(input_s)
   isotonic.isotonic_l2(input_s - input_w, solution)
   return solution
 
@@ -67,10 +68,11 @@ def isotonic_kl(input_s, input_w=None):
     input_s: input to isotonic optimization, a 1d-array.
     input_w: input to isotonic optimization, a 1d-array.
   Returns:
-    solution to the optimization problem.
+    solution to the optimization problem (same dtype as input_s).
   """
   if input_w is None:
     input_w = np.arange(len(input_s))[::-1] + 1
+  input_w = input_w.astype(input_s.dtype)
   solution = np.zeros(len(input_s)).astype(input_s.dtype)
   isotonic.isotonic_kl(input_s, input_w.astype(input_s.dtype), solution)
   return solution
