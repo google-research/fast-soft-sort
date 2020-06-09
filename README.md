@@ -10,24 +10,47 @@ Dependencies
 * NumPy
 * SciPy
 * Numba
-* Tensorflow
+* Tensorflow (optional)
+* PyTorch (optional)
 
-Example
---------
+TensorFlow Example
+-------------------
 
 ```python
 >>> import tensorflow as tf
 >>> from tf_ops import soft_rank, soft_sort
 >>> values = tf.convert_to_tensor([[5., 1., 2.], [2., 1., 5.]], dtype=tf.float64)
->>> tf_ops.soft_sort(values, regularization_strength=1.0)
+>>> soft_sort(values, regularization_strength=1.0)
 <tf.Tensor: shape=(2, 3), dtype=float64, numpy= array([[1.66666667, 2.66666667, 3.66666667], [1.66666667, 2.66666667, 3.66666667]])>
->>> tf_ops.soft_sort(values, regularization_strength=0.1)
+>>> soft_sort(values, regularization_strength=0.1)
 <tf.Tensor: shape=(2, 3), dtype=float64, numpy= array([[1., 2., 5.], [1., 2., 5.]])>
->>> tf_ops.soft_rank(values, regularization_strength=2.0)
+>>> soft_rank(values, regularization_strength=2.0)
 <tf.Tensor: shape=(2, 3), dtype=float64, numpy= array([[3. , 1.25, 1.75], [1.75, 1.25, 3. ]])>
->>> tf_ops.soft_rank(values, regularization_strength=1.0)
+>>> soft_rank(values, regularization_strength=1.0)
 <tf.Tensor: shape=(2, 3), dtype=float64, numpy= array([[3., 1., 2.], [2., 1., 3.]])>
 ```
+
+PyTorch Example
+---------------
+
+```python
+>>> import torch
+>>> from pytorch_ops import soft_rank, soft_sort
+>>> values = torch.tensor([[5., 1., 2.], [2., 1., 5.]], dtype=torch.float64)
+>>> soft_sort(values, regularization_strength=1.0)
+tensor([[1.6667, 2.6667, 3.6667]
+        [1.6667, 2.6667, 3.6667]], dtype=torch.float64)
+>>> soft_sort(values, regularization_strength=0.1)
+tensor([[1., 2., 5.]
+        [1., 2., 5.]], dtype=torch.float64)
+>>> soft_rank(values, regularization_strength=2.0)
+tensor([[3.0000, 1.2500, 1.7500],
+        [1.7500, 1.2500, 3.0000]], dtype=torch.float64)
+>>> soft_rank(values, regularization_strength=1.0)
+tensor([[3., 1., 2.]
+        [2., 1., 3.]], dtype=torch.float64)
+```
+
 
 Install
 --------
