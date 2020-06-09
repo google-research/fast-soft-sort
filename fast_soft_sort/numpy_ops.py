@@ -179,8 +179,8 @@ class Projection(_Differentiable):
   def __init__(self, input_theta, input_w=None, regularization="l2"):
     if input_w is None:
       input_w = np.arange(len(input_theta))[::-1] + 1
-    self.input_theta = input_theta
-    self.input_w = input_w
+    self.input_theta = np.asarray(input_theta)
+    self.input_w = np.asarray(input_w)
     _check_regularization(regularization)
     self.regularization = regularization
     self.isotonic = None
@@ -227,7 +227,7 @@ class SoftRank(_Differentiable):
 
   def __init__(self, values, direction="ASCENDING",
                regularization_strength=1.0, regularization="l2"):
-    self.values = values
+    self.values = np.asarray(values)
     self.input_w = np.arange(len(values))[::-1] + 1
     _check_direction(direction)
     sign = 1 if direction == "ASCENDING" else -1
@@ -273,7 +273,7 @@ class SoftSort(_Differentiable):
 
   def __init__(self, values, direction="ASCENDING",
                regularization_strength=1.0, regularization="l2"):
-    self.values = values
+    self.values = np.asarray(values)
     _check_direction(direction)
     self.sign = 1 if direction == "DESCENDING" else -1
     self.regularization_strength = regularization_strength
@@ -318,7 +318,7 @@ class Sort(_Differentiable):
 
   def __init__(self, values, direction="ASCENDING"):
     _check_direction(direction)
-    self.values = values
+    self.values = np.asarray(values)
     self.sign = 1 if direction == "DESCENDING" else -1
     self.permutation_ = None
 

@@ -105,6 +105,21 @@ class SoftRankTest(parameterized.TestCase):
     out = soft_rank.jacobian()
     np.testing.assert_array_almost_equal(J, out, 1e-6)
 
+  @parameterized.parameters(itertools.product(GAMMAS, DIRECTIONS, REGULARIZERS))
+  def test_soft_rank_works_with_lists(self, regularization_strength, direction,
+                         regularization):
+    rng = np.random.RandomState(0)
+    theta = rng.randn(5)
+    ranks1 = numpy_ops.SoftRank(theta,
+                                regularization_strength=regularization_strength,
+                                direction=direction,
+                                regularization=regularization).compute()
+    ranks2 = numpy_ops.SoftRank(list(theta),
+                                regularization_strength=regularization_strength,
+                                direction=direction,
+                                regularization=regularization).compute()
+    np.testing.assert_array_almost_equal(ranks1, ranks2)
+
 
 class SoftSortTest(parameterized.TestCase):
 
@@ -146,6 +161,21 @@ class SoftSortTest(parameterized.TestCase):
     out = soft_sort.jacobian()
     np.testing.assert_array_almost_equal(J, out, 1e-6)
 
+  @parameterized.parameters(itertools.product(GAMMAS, DIRECTIONS, REGULARIZERS))
+  def test_soft_sort_works_with_lists(self, regularization_strength, direction,
+                         regularization):
+    rng = np.random.RandomState(0)
+    theta = rng.randn(5)
+    sort1 = numpy_ops.SoftSort(theta,
+                               regularization_strength=regularization_strength,
+                               direction=direction,
+                               regularization=regularization).compute()
+    sort2 = numpy_ops.SoftSort(list(theta),
+                               regularization_strength=regularization_strength,
+                               direction=direction,
+                               regularization=regularization).compute()
+    np.testing.assert_array_almost_equal(sort1, sort2)
+
 
 class SortTest(parameterized.TestCase):
 
@@ -166,6 +196,14 @@ class SortTest(parameterized.TestCase):
 
     out = sort.vjp(v)
     np.testing.assert_array_almost_equal(v.dot(J), out)
+
+  @parameterized.parameters(itertools.product(DIRECTIONS))
+  def test_sort_works_with_lists(self, direction):
+    rng = np.random.RandomState(0)
+    theta = rng.randn(5)
+    sort_numpy = numpy_ops.Sort(theta, direction=direction).compute()
+    sort_list = numpy_ops.Sort(list(theta), direction=direction).compute()
+    np.testing.assert_array_almost_equal(sort_numpy, sort_list)
 
 
 if __name__ == "__main__":
