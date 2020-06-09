@@ -21,7 +21,7 @@ https://arxiv.org/abs/2002.08871
 This implementation follows the notation of the paper whenever possible.
 """
 
-from .third_party import isotonic_cython as isotonic
+from .third_party import isotonic
 import numpy as np
 from scipy import special
 
