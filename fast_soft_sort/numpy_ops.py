@@ -291,7 +291,7 @@ class SoftSort(_Differentiable):
 
   def compute(self):
     size = len(self.values)
-    input_w = np.arange(size)[::-1] + 1 / self.regularization_strength
+    input_w = np.arange(1, size + 1)[::-1] / self.regularization_strength
     values = self.sign * self.values
     self.permutation_ = np.argsort(values)[::-1]
     s = values[self.permutation_]
