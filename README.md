@@ -30,6 +30,27 @@ TensorFlow Example
 <tf.Tensor: shape=(2, 3), dtype=float64, numpy= array([[3., 1., 2.], [2., 1., 3.]])>
 ```
 
+JAX Example
+-----------
+
+```python
+>>> import jax.numpy as jnp
+>>> from jax_ops import soft_rank, soft_sort
+>>> values = jnp.array([[5., 1., 2.], [2., 1., 5.]], dtype=jnp.float64)
+>>> soft_sort(values, regularization_strength=1.0)
+[[1.66666667 2.66666667 3.66666667]
+ [1.66666667 2.66666667 3.66666667]]
+>>> soft_sort(values, regularization_strength=0.1)
+[[1. 2. 5.]
+ [1. 2. 5.]]
+>>> soft_rank(values, regularization_strength=2.0)
+[[3.   1.25 1.75]
+ [1.75 1.25 3.  ]]
+>>> soft_rank(values, regularization_strength=1.0)
+[[3. 1. 2.]
+ [2. 1. 3.]]
+```
+
 PyTorch Example
 ---------------
 
@@ -64,4 +85,5 @@ Reference
 
 > Fast Differentiable Sorting and Ranking
 > Mathieu Blondel, Olivier Teboul, Quentin Berthet, Josip Djolonga
+> In proceedings of ICML 2020
 > [arXiv:2002.08871](https://arxiv.org/abs/2002.08871)
