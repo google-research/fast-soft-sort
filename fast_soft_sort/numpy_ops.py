@@ -168,7 +168,7 @@ class Isotonic(_Differentiable):
 
 def _inv_permutation(permutation):
   """Returns inverse permutation of 'permutation'."""
-  inv_permutation = np.zeros(len(permutation), dtype=np.int)
+  inv_permutation = np.zeros(len(permutation), dtype=int)
   inv_permutation[permutation] = np.arange(len(permutation))
   return inv_permutation
 
