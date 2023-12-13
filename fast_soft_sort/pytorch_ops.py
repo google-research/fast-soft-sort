@@ -31,13 +31,13 @@ def wrap_class(cls, **kwargs):
 
     @staticmethod
     def forward(ctx, values):
-      obj = cls(values.detach().numpy(), **kwargs)
+      obj = cls(values.detach().cpu().numpy(), **kwargs)
       ctx.numpy_obj = obj
-      return torch.from_numpy(obj.compute())
+      return torch.from_numpy(obj.compute()).to(values.device)
 
     @staticmethod
     def backward(ctx, grad_output):
-      return torch.from_numpy(ctx.numpy_obj.vjp(grad_output.numpy()))
+      return torch.from_numpy(ctx.numpy_obj.vjp(grad_output.cpu().numpy())).to(grad_output.device)
 
   return NumpyOpWrapper
 
