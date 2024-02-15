@@ -13,7 +13,7 @@ Dependencies
 * Tensorflow (optional)
 * PyTorch (optional)
 
-Purpose of Project
+Purpose of the Project
 ------------
 The sorting operation is widely used in computer programming and machine learning for robust statistics. However, as a function, it has many non-differentiable points, making it challenging for certain mathematical operations. Similarly, the ranking operator, often used for order statistics and ranking metrics, has its own set of challenges due to its piecewise constant nature, which makes its derivatives null or undefined. Although there have been attempts to create differentiable alternatives to sorting and ranking, they have not been able to achieve the expected O(nlogn) time complexity.
 
