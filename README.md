@@ -13,6 +13,12 @@ Dependencies
 * Tensorflow (optional)
 * PyTorch (optional)
 
+Purpose of the Project
+------------
+The sorting operation is widely used in computer programming and machine learning for robust statistics. However, as a function, it has many non-differentiable points, making it challenging for certain mathematical operations. Similarly, the ranking operator, often used for order statistics and ranking metrics, has its own set of challenges due to its piecewise constant nature, which makes its derivatives null or undefined. Although there have been attempts to create differentiable alternatives to sorting and ranking, they have not been able to achieve the expected O(nlogn) time complexity.
+
+In this repository, we propose the first differentiable sorting and ranking operators with O(nlogn) time and O(n) space complexity. Our proposal not only provides precise computation, but also allows for differentiation, overcoming the limitations of current methods. We achieve this feat by constructing differentiable operators as projections onto the permutahedron, the convex hull of permutations, and using a reduction to isotonic optimization.
+
 TensorFlow Example
 -------------------
 
@@ -79,6 +85,23 @@ Install
 Run `python setup.py install` or copy the `fast_soft_sort/` folder to your
 project.
 
+
+FAQ
+------
+<h4>Q: What is differentiable sorting and ranking?</h4>
+A: Differentiable sorting and ranking refer to operations that maintain differentiability properties while sorting or ranking elements of a sequence. In machine learning, these operations are crucial for tasks such as permutation-invariant neural networks and differentiable optimization.
+
+<h4>Q: Why is differentiable sorting important?</h4>
+A: Differentiable sorting enables the use of sorting operations within deep learning models, allowing gradients to flow through the sorting process. This capability is essential for tasks where sorting is a part of the computational graph, such as learning-to-rank algorithms and permutation-invariant architectures.
+
+<h4>Q: What are the advantages of using the provided operations?</h4>
+A: The provided operations offer O(n log n) time complexity, making them efficient for large datasets. Additionally, they support various deep learning frameworks, including TensorFlow, PyTorch, and JAX, providing flexibility for integration into existing workflows.
+
+<h4>Q: How can I incorporate differentiable sorting and ranking into my machine learning models?</h4>
+A: You can use the provided operations as building blocks within your neural network architectures. For example, you can use differentiable sorting to implement permutation-invariant layers or ranking operations for tasks such as learning-to-rank or top-k selection.
+
+<h4>Q: Are there any limitations to differentiable sorting and ranking?</h4>
+A: While differentiable sorting and ranking provide valuable capabilities, it's essential to consider computational costs, especially for large datasets. Additionally, the choice of regularization parameters can affect the behavior of the operations, requiring careful tuning for optimal performance.
 
 Reference
 ------------
