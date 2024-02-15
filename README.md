@@ -1,8 +1,10 @@
 
-Fast Differentiable Sorting and Ranking
-=======================================
+Fast Differentiable Sorting and Ranking Operations in O(nlogn)
+=============================================================
 
-Differentiable sorting and ranking operations in O(n log n).
+* The first differentiable sorting and ranking operators with O(n log n) time and O(n) memory complexity
+* Applications to research: machine learning, isotonic regression, robust statistics, optimal transport, etc.
+
 
 Dependencies
 ------------
@@ -75,10 +77,32 @@ tensor([[3., 1., 2.]
 
 Install
 --------
-
+Run `pip install setuptools` (if not yet installed)
 Run `python setup.py install` or copy the `fast_soft_sort/` folder to your
 project.
 
+Contributers 
+------------
+Thank you to our researchers:
+* mblondel
+* josipd
+* ita9naiwa 
+* francescortu
+
+Frequently Asked Questions
+--------------------------
+Q: How are differentiable sorting and ranking operations different from regular sorting and ranking operations? 
+A: Regular sorting and ranking operations aren't differentiable because the function is not continuous.
+Differentiable sorting and ranking operations create "smooth" versions of sorting and ranking that allow us to 
+differentiate with respect to the input values.
+Analogy: 
+Regular sorting and ranking operations are like a staircase, and DSR is like a ramp. Both get you to your destination, but the ramp lets you smoothly roll down.
+
+Q: Was this project developed by Google? 
+A: Yes, this research project was carried about by researchers of the Google Brain team directly. 
+
+Q: How do I contribute to this repository? 
+A: Guidelines for contributing to this repository can be found in CONTRIBUTING.md
 
 Reference
 ------------
